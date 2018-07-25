@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         let view = UIView()
         view.isHidden = true
         view.backgroundColor = UIColor(hexString: "#38acf7")
+        view.layer.cornerRadius = 15
         
         return view
     }()
@@ -24,8 +25,7 @@ class ViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = UIColor(hexString: "#222222")
         view.frame = self.view.frame
-        view.isUserInteractionEnabled = true
-        view.isMultipleTouchEnabled = true
+        view.isUserInteractionEnabled = false
         
         return view
     }()
@@ -47,9 +47,10 @@ class ViewController: UIViewController {
         self.isFirstTransform = true
         
         self.collectionVIew.showsHorizontalScrollIndicator = false
+        self.collectionVIew.backgroundColor = UIColor.clear
         
         let layout = self.collectionVIew.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.sectionInset = UIEdgeInsets(top: 0, left: self.view.center.x - 100, bottom: 0, right: self.view.center.x - 100)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: self.view.center.x - 75, bottom: 0, right: self.view.center.x - 75)
         layout.itemSize = CGSize(width: 150, height: 200)
         layout.minimumInteritemSpacing = 10
         layout.scrollDirection = .horizontal
@@ -63,7 +64,10 @@ class ViewController: UIViewController {
         
     }
     
+    // MARK: Background view did tap
     @objc func viewDidTap(sender: UITapGestureRecognizer) {
+        self.backgroundView.isUserInteractionEnabled = false
+        
         guard let cell = collectionVIew.cellForItem(at: IndexPath(item: currentIndex, section: 0)) else {
             fatalError("cell nil")
         }
@@ -75,7 +79,7 @@ class ViewController: UIViewController {
                     self.detailView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y - 100, width: 150, height: 200)
                 }) { _ in
                     UIView.animate(withDuration: 0.5, animations: {
-                        self.detailView.frame.origin.x = self.view.center.x - 100
+                        self.detailView.frame.origin.x = self.view.center.x - 75
                         self.detailView.frame.origin.y = self.collectionVIew.frame.origin.y + cell.frame.minY
                     }, completion: { _ in
                         self.detailView.isHidden = true
@@ -99,7 +103,7 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
-        let pageWidth: Float = 150 + 5
+        let pageWidth: Float = 150 + 10
         
         let currentOffset = Float(scrollView.contentOffset.x)
         var newOffset: CGFloat = 0.0
@@ -168,6 +172,7 @@ extension ViewController: UICollectionViewDelegate {
         }
     }
     
+    // MARK: Select cell animation
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == currentIndex {
             guard let cell = collectionView.cellForItem(at: indexPath) else {
@@ -175,9 +180,11 @@ extension ViewController: UICollectionViewDelegate {
             }
             
             self.detailView.frame.size = cell.frame.size
-            self.detailView.frame.origin.x = self.view.center.x - 100
+            self.detailView.frame.origin.x = self.view.center.x - 75
             self.detailView.frame.origin.y = self.collectionVIew.frame.origin.y + cell.frame.minY
-
+            self.detailView.layer.cornerRadius = 15.0
+            
+            
             
             UIView.animate(withDuration: 1, animations: {
                 collectionView.frame.origin.y += 300
@@ -188,11 +195,14 @@ extension ViewController: UICollectionViewDelegate {
             }) { _ in
                 UIView.animate(withDuration: 0.5, animations: {
                     self.detailView.frame = CGRect(origin: self.detailView.frame.origin, size: CGSize(width: self.detailView.frame.size.width, height: 400))
+                }, completion: { _ in
+                    self.backgroundView.isUserInteractionEnabled = true
                 })
             }
+            
             self.isDetailOpened = true
         } else {
-            let pageWidth: Float = 150 + 5
+            let pageWidth: Float = 150 + 10
             let lastIndex = currentIndex
             currentIndex = indexPath.row
             
@@ -221,10 +231,25 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TestCollectionViewCell
+        
         cell.backgroundColor = UIColor(hexString: "#38acf7")
+        cell.backgroundNumber.text = "\(indexPath.row + 1)"
+        cell.numberLabel.text = "\(indexPath.row + 1)"
+        cell.detailLabel.text = "Deutsche Bank"
+        cell.priceLabel.text = "€0,60"
+        cell.layer.cornerRadius = 10
         
+        // numberlabel layout
+        cell.numberLabel.layer.masksToBounds = true
+        cell.numberLabel.layer.cornerRadius = 15.0
+        cell.numberLabel.backgroundColor = UIColor.white
+        cell.numberLabel.textColor = UIColor(hexString: "#38acf7")
+        cell.numberLabel.textAlignment = .center
         
+        // detaillabel layout
+        cell.detailLabel.textColor = UIColor.white
+        cell.detailLabel.translatesAutoresizingMaskIntoConstraints = false
 
         if isFirstTransform && indexPath.row == 0 {
             isFirstTransform = false

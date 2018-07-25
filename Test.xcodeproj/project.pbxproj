@@ -13,6 +13,7 @@
 		175DA5312073463B009A2E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 175DA5302073463B009A2E48 /* Assets.xcassets */; };
 		175DA53F2073463B009A2E48 /* TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DA53E2073463B009A2E48 /* TestTests.swift */; };
 		175DA54A2073463C009A2E48 /* TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DA5492073463C009A2E48 /* TestUITests.swift */; };
+		17B8466D210878B800E68461 /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B8466C210878B800E68461 /* TestCollectionViewCell.swift */; };
 		17FEC95B2108193500DE7ACA /* UIColor+hexcolor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FEC95A2108193500DE7ACA /* UIColor+hexcolor.swift */; };
 		24874272275F74BCD4559456 /* Pods_TestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321688BB8F9C80897835D8E /* Pods_TestTests.framework */; };
 		2781810567C0DF37682E2D69 /* Pods_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D38EC78A36403FD4C736C3 /* Pods_Test.framework */; };
@@ -49,6 +50,7 @@
 		175DA5452073463C009A2E48 /* TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		175DA5492073463C009A2E48 /* TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUITests.swift; sourceTree = "<group>"; };
 		175DA54B2073463C009A2E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		17B8466C210878B800E68461 /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
 		17FEC95A2108193500DE7ACA /* UIColor+hexcolor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexcolor.swift"; sourceTree = "<group>"; };
 		1FFB6FA0F9324F5701D79A2B /* Pods-TestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestUITests/Pods-TestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6D82EEC1F876CF1079D050D9 /* Pods-TestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestUITests/Pods-TestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				175DA5352073463B009A2E48 /* Info.plist */,
 				1754EFB020E5C200001DF6BE /* ViewController.swift */,
 				1754EFB220E5C208001DF6BE /* Main.storyboard */,
+				17B8466C210878B800E68461 /* TestCollectionViewCell.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			files = (
 				1754EFB120E5C200001DF6BE /* ViewController.swift in Sources */,
 				175DA52A2073463B009A2E48 /* AppDelegate.swift in Sources */,
+				17B8466D210878B800E68461 /* TestCollectionViewCell.swift in Sources */,
 				17FEC95B2108193500DE7ACA /* UIColor+hexcolor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
