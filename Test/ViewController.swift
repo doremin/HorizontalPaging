@@ -6,26 +6,45 @@
 //  Copyright © 2018 doremin. All rights reserved.
 //
 
+import MapKit
 import UIKit
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionVIew: UICollectionView!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    let locations = [CLLocation(latitude: 37.5667046, longitude: 126.99572940000007),
+                     CLLocation(latitude: 37.5670094, longitude: 126.99703160000001),
+                     CLLocation(latitude: 37.5673094, longitude: 126.9983160000001)]
+    
+    lazy var stations = self.locations.map { location in
+        return Station(text: "\(self.locations.index(of: location)! + 1)", coordinate: location.coordinate)
+    }
     
     lazy var detailView: UIView = {
         let view = UIView()
         view.isHidden = true
         view.backgroundColor = UIColor(hexString: "#38acf7")
-        view.layer.cornerRadius = 15
         
-        return view
-    }()
-    
-    lazy var backgroundView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(hexString: "#222222")
-        view.frame = self.view.frame
-        view.isUserInteractionEnabled = false
+        let directionView = UIView()
+        directionView.frame.size = CGSize(width: self.view.frame.width * 0.8, height: 0)
+        directionView.center.y = self.view.center.y
+        directionView.backgroundColor = UIColor.white
+        
+        let numberCircleLabel = UILabel()
+        numberCircleLabel.frame = CGRect(origin: CGPoint(x: 20, y: 20), size: CGSize(width: 30, height: 30))
+        numberCircleLabel.layer.masksToBounds = true
+        numberCircleLabel.layer.cornerRadius = 15
+        numberCircleLabel.backgroundColor = UIColor.white
+        numberCircleLabel.textAlignment = .center
+        numberCircleLabel.textColor = UIColor(hexString: "#38acf7")
+        
+        
+        view.addSubview(directionView)
+        view.addSubview(numberCircleLabel)
+        
+        self.mapView.register(StationsMarker.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         
         return view
     }()
@@ -37,6 +56,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.mapView.delegate = self
+        
+        self.mapView.isUserInteractionEnabled = false
+        self.mapView.isScrollEnabled = false
         
         let viewTapGeusture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap(sender:)))
         viewTapGeusture.numberOfTapsRequired = 1
@@ -56,17 +80,20 @@ class ViewController: UIViewController {
         layout.scrollDirection = .horizontal
         
         self.view.addSubview(self.detailView)
-        self.view.addSubview(self.backgroundView)
         self.view.bringSubview(toFront: self.collectionVIew)
         self.view.bringSubview(toFront: self.detailView)
         
-        self.backgroundView.addGestureRecognizer(viewTapGeusture)
+        self.mapView.addGestureRecognizer(viewTapGeusture)
         
+        centerMapOnLocation(location: CLLocation(latitude: 37.566386, longitude: 126.99793979999999))
+        
+        self.mapView.addAnnotations(self.stations)
+        mapView.selectAnnotation(stations[currentIndex], animated: true)
     }
     
     // MARK: Background view did tap
     @objc func viewDidTap(sender: UITapGestureRecognizer) {
-        self.backgroundView.isUserInteractionEnabled = false
+        self.mapView.isUserInteractionEnabled = false
         
         guard let cell = collectionVIew.cellForItem(at: IndexPath(item: currentIndex, section: 0)) else {
             fatalError("cell nil")
@@ -74,9 +101,11 @@ class ViewController: UIViewController {
         
         if sender.state == .ended {
             if isDetailOpened {
-                UIView.animate(withDuration: 1, animations: {
+                UIView.animate(withDuration: 0.6, animations: {
                     self.collectionVIew.frame.origin.y -= 300
                     self.detailView.frame = CGRect(x: self.view.center.x - 75, y: self.view.center.y - 100, width: 150, height: 200)
+                    self.detailView.subviews.first?.frame = CGRect(x: (self.detailView.bounds.maxX + self.detailView.bounds.minX) / 2, y: self.detailView.bounds.maxY, width: 0, height: 0)
+                    
                 }) { _ in
                     UIView.animate(withDuration: 0.5, animations: {
                         self.detailView.frame.origin.x = self.view.center.x - 75
@@ -92,12 +121,21 @@ class ViewController: UIViewController {
         
         isDetailOpened = false
     }
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let region = MKCoordinateRegionMakeWithDistance(location.coordinate, 500, 500)
+        
+        self.mapView.setRegion(region, animated: false)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 }
 
 extension ViewController: UICollectionViewDelegate {
@@ -170,33 +208,47 @@ extension ViewController: UICollectionViewDelegate {
                 afterCell?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             }
         }
+        mapView.selectAnnotation(stations[currentIndex], animated: true)
     }
     
     // MARK: Select cell animation
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == currentIndex {
-            guard let cell = collectionView.cellForItem(at: indexPath) else {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? TestCollectionViewCell else {
                 fatalError("select tap nil")
             }
             
             self.detailView.frame.size = cell.frame.size
             self.detailView.frame.origin.x = self.view.center.x - 75
             self.detailView.frame.origin.y = self.collectionVIew.frame.origin.y + cell.frame.minY
-            self.detailView.layer.cornerRadius = 15.0
             
+            self.detailView.subviews.first?.frame.size = CGSize(width: self.view.frame.width * 0.8, height: 0)
+            self.detailView.subviews.first?.center.y = self.view.center.y
+            self.detailView.subviews.first?.frame.origin.x = 0
             
+            self.detailView.subviews
+                .filter({ view -> Bool in
+                    return view != self.detailView.subviews.first
+                })
+                .compactMap({ view in
+                    return view as? UILabel
+                })
+                .forEach({ label in
+                    label.text = cell.numberLabel.text
+                })
             
-            UIView.animate(withDuration: 1, animations: {
+            UIView.animate(withDuration: 0.6, animations: {
                 collectionView.frame.origin.y += 300
                 cell.isHidden = true
                 self.detailView.isHidden = false
                 self.detailView.frame.size = CGSize(width: self.view.frame.width * 0.8, height: 200)
-                self.detailView.center = self.view.center
+                self.detailView.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 40)
             }) { _ in
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.detailView.frame = CGRect(origin: self.detailView.frame.origin, size: CGSize(width: self.detailView.frame.size.width, height: 400))
+                    self.detailView.subviews.first?.frame = CGRect(x: 0, y: self.detailView.bounds.maxY - 15, width: self.view.frame.width
+                         * 0.8, height: 200)
                 }, completion: { _ in
-                    self.backgroundView.isUserInteractionEnabled = true
+                    self.mapView.isUserInteractionEnabled = true
                 })
             }
             
@@ -216,7 +268,7 @@ extension ViewController: UICollectionViewDelegate {
                 currentCell?.transform = CGAffineTransform.identity
             }
             
-            
+            mapView.selectAnnotation(stations[currentIndex], animated: true)
         }
     }
 }
@@ -238,7 +290,6 @@ extension ViewController: UICollectionViewDataSource {
         cell.numberLabel.text = "\(indexPath.row + 1)"
         cell.detailLabel.text = "Deutsche Bank"
         cell.priceLabel.text = "€0,60"
-        cell.layer.cornerRadius = 10
         
         // numberlabel layout
         cell.numberLabel.layer.masksToBounds = true
@@ -258,6 +309,14 @@ extension ViewController: UICollectionViewDataSource {
         }
         
         return cell
+    }
+}
+
+extension ViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        UIView.animate(withDuration: 0.5) {
+            view.frame.size = CGSize(width: view.frame.width + 100, height: view.frame.height)
+        }
     }
 }
 

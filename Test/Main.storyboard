@@ -94,12 +94,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dGk-KQ-RxZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dGk-KQ-RxZ" firstAttribute="leading" secondItem="uBr-EE-QCu" secondAttribute="leading" id="DNX-oR-jIT"/>
+                            <constraint firstItem="dGk-KQ-RxZ" firstAttribute="bottom" secondItem="uBr-EE-QCu" secondAttribute="bottom" id="acx-P7-vaB"/>
+                            <constraint firstItem="dGk-KQ-RxZ" firstAttribute="trailing" secondItem="uBr-EE-QCu" secondAttribute="trailing" id="fCE-Mk-dAM"/>
+                            <constraint firstItem="dGk-KQ-RxZ" firstAttribute="top" secondItem="2Th-rJ-WYP" secondAttribute="top" id="xx6-AJ-xn7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uBr-EE-QCu"/>
                     </view>
                     <connections>
                         <outlet property="collectionVIew" destination="t6H-h3-PUk" id="VCi-y5-8dn"/>
+                        <outlet property="mapView" destination="dGk-KQ-RxZ" id="laP-5K-9yA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0sF-f6-rd6" userLabel="First Responder" sceneMemberID="firstResponder"/>

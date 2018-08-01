@@ -14,6 +14,17 @@
 		175DA53F2073463B009A2E48 /* TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DA53E2073463B009A2E48 /* TestTests.swift */; };
 		175DA54A2073463C009A2E48 /* TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175DA5492073463C009A2E48 /* TestUITests.swift */; };
 		17B8466D210878B800E68461 /* TestCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B8466C210878B800E68461 /* TestCollectionViewCell.swift */; };
+		17B846782109A67800E68461 /* line4.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17B8466F2109A67800E68461 /* line4.geojson */; };
+		17B846792109A67800E68461 /* line6.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17B846702109A67800E68461 /* line6.geojson */; };
+		17B8467A2109A67800E68461 /* line8.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17B846712109A67800E68461 /* line8.geojson */; };
+		17B8467B2109A67800E68461 /* line5.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17B846722109A67800E68461 /* line5.geojson */; };
+		17B8467C2109A67800E68461 /* line1.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17B846732109A67800E68461 /* line1.geojson */; };
+		17B8467D2109A67800E68461 /* line9.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17B846742109A67800E68461 /* line9.geojson */; };
+		17B8467E2109A67800E68461 /* line3.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17B846752109A67800E68461 /* line3.geojson */; };
+		17B8467F2109A67800E68461 /* line7.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17B846762109A67800E68461 /* line7.geojson */; };
+		17B846802109A67800E68461 /* line2.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 17B846772109A67800E68461 /* line2.geojson */; };
+		17B846822109A85B00E68461 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B846812109A85B00E68461 /* Station.swift */; };
+		17B846842109AB2900E68461 /* StationMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B846832109AB2900E68461 /* StationMarker.swift */; };
 		17FEC95B2108193500DE7ACA /* UIColor+hexcolor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FEC95A2108193500DE7ACA /* UIColor+hexcolor.swift */; };
 		24874272275F74BCD4559456 /* Pods_TestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A321688BB8F9C80897835D8E /* Pods_TestTests.framework */; };
 		2781810567C0DF37682E2D69 /* Pods_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D38EC78A36403FD4C736C3 /* Pods_Test.framework */; };
@@ -51,6 +62,17 @@
 		175DA5492073463C009A2E48 /* TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUITests.swift; sourceTree = "<group>"; };
 		175DA54B2073463C009A2E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17B8466C210878B800E68461 /* TestCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCollectionViewCell.swift; sourceTree = "<group>"; };
+		17B8466F2109A67800E68461 /* line4.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line4.geojson; path = ../../../../Swallaby/MKRouteSample/MKRouteSample/subway/line4.geojson; sourceTree = "<group>"; };
+		17B846702109A67800E68461 /* line6.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line6.geojson; path = ../../../../Swallaby/MKRouteSample/MKRouteSample/subway/line6.geojson; sourceTree = "<group>"; };
+		17B846712109A67800E68461 /* line8.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line8.geojson; path = ../../../../Swallaby/MKRouteSample/MKRouteSample/subway/line8.geojson; sourceTree = "<group>"; };
+		17B846722109A67800E68461 /* line5.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line5.geojson; path = ../../../../Swallaby/MKRouteSample/MKRouteSample/subway/line5.geojson; sourceTree = "<group>"; };
+		17B846732109A67800E68461 /* line1.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line1.geojson; path = ../../../../Swallaby/MKRouteSample/MKRouteSample/subway/line1.geojson; sourceTree = "<group>"; };
+		17B846742109A67800E68461 /* line9.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line9.geojson; path = ../../../../Swallaby/MKRouteSample/MKRouteSample/subway/line9.geojson; sourceTree = "<group>"; };
+		17B846752109A67800E68461 /* line3.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line3.geojson; path = ../../../../Swallaby/MKRouteSample/MKRouteSample/subway/line3.geojson; sourceTree = "<group>"; };
+		17B846762109A67800E68461 /* line7.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line7.geojson; path = ../../../../Swallaby/MKRouteSample/MKRouteSample/subway/line7.geojson; sourceTree = "<group>"; };
+		17B846772109A67800E68461 /* line2.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = line2.geojson; path = ../../../../Swallaby/MKRouteSample/MKRouteSample/subway/line2.geojson; sourceTree = "<group>"; };
+		17B846812109A85B00E68461 /* Station.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		17B846832109AB2900E68461 /* StationMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationMarker.swift; sourceTree = "<group>"; };
 		17FEC95A2108193500DE7ACA /* UIColor+hexcolor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexcolor.swift"; sourceTree = "<group>"; };
 		1FFB6FA0F9324F5701D79A2B /* Pods-TestUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestUITests/Pods-TestUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6D82EEC1F876CF1079D050D9 /* Pods-TestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestUITests/Pods-TestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,13 +138,16 @@
 		175DA5282073463B009A2E48 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				17B8466E2109A65B00E68461 /* Subway */,
 				17FEC9592108191C00DE7ACA /* Extension */,
 				175DA5292073463B009A2E48 /* AppDelegate.swift */,
+				17B846812109A85B00E68461 /* Station.swift */,
 				175DA5302073463B009A2E48 /* Assets.xcassets */,
 				175DA5352073463B009A2E48 /* Info.plist */,
 				1754EFB020E5C200001DF6BE /* ViewController.swift */,
 				1754EFB220E5C208001DF6BE /* Main.storyboard */,
 				17B8466C210878B800E68461 /* TestCollectionViewCell.swift */,
+				17B846832109AB2900E68461 /* StationMarker.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -143,6 +168,22 @@
 				175DA54B2073463C009A2E48 /* Info.plist */,
 			);
 			path = TestUITests;
+			sourceTree = "<group>";
+		};
+		17B8466E2109A65B00E68461 /* Subway */ = {
+			isa = PBXGroup;
+			children = (
+				17B846732109A67800E68461 /* line1.geojson */,
+				17B846772109A67800E68461 /* line2.geojson */,
+				17B846752109A67800E68461 /* line3.geojson */,
+				17B8466F2109A67800E68461 /* line4.geojson */,
+				17B846722109A67800E68461 /* line5.geojson */,
+				17B846702109A67800E68461 /* line6.geojson */,
+				17B846762109A67800E68461 /* line7.geojson */,
+				17B846712109A67800E68461 /* line8.geojson */,
+				17B846742109A67800E68461 /* line9.geojson */,
+			);
+			path = Subway;
 			sourceTree = "<group>";
 		};
 		17FEC9592108191C00DE7ACA /* Extension */ = {
@@ -286,8 +327,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17B8467C2109A67800E68461 /* line1.geojson in Resources */,
+				17B8467E2109A67800E68461 /* line3.geojson in Resources */,
+				17B8467D2109A67800E68461 /* line9.geojson in Resources */,
+				17B846802109A67800E68461 /* line2.geojson in Resources */,
 				175DA5312073463B009A2E48 /* Assets.xcassets in Resources */,
 				1754EFB320E5C208001DF6BE /* Main.storyboard in Resources */,
+				17B846792109A67800E68461 /* line6.geojson in Resources */,
+				17B8467B2109A67800E68461 /* line5.geojson in Resources */,
+				17B8467A2109A67800E68461 /* line8.geojson in Resources */,
+				17B846782109A67800E68461 /* line4.geojson in Resources */,
+				17B8467F2109A67800E68461 /* line7.geojson in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +419,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17B846842109AB2900E68461 /* StationMarker.swift in Sources */,
 				1754EFB120E5C200001DF6BE /* ViewController.swift in Sources */,
+				17B846822109A85B00E68461 /* Station.swift in Sources */,
 				175DA52A2073463B009A2E48 /* AppDelegate.swift in Sources */,
 				17B8466D210878B800E68461 /* TestCollectionViewCell.swift in Sources */,
 				17FEC95B2108193500DE7ACA /* UIColor+hexcolor.swift in Sources */,
@@ -458,7 +510,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -511,7 +563,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
